@@ -10,18 +10,14 @@ import {
   Tag,
   Wrap,
   WrapItem,
-  SpaceProps,
   useColorModeValue,
   Container,
   VStack,
 } from '@chakra-ui/react';
 
-interface IBlogTags {
-  tags: Array<string>;
-  marginTop?: SpaceProps['marginTop'];
-}
 
-const BlogTags: React.FC<IBlogTags> = (props) => {
+
+const BlogTags = (props) => {
   return (
     <HStack spacing={2} marginTop={props.marginTop}>
       {props.tags.map((tag) => {
@@ -35,12 +31,9 @@ const BlogTags: React.FC<IBlogTags> = (props) => {
   );
 };
 
-interface BlogAuthorProps {
-  date: Date;
-  name: string;
-}
 
-export const BlogAuthor: React.FC<BlogAuthorProps> = (props) => {
+
+export const BlogAuthor = (props) => {
   return (
     <HStack marginTop="2" spacing="2" display="flex" alignItems="center">
       <Image
@@ -59,7 +52,7 @@ export const BlogAuthor: React.FC<BlogAuthorProps> = (props) => {
 const ArticleList = () => {
   return (
     <Container maxW={'7xl'} p="12">
-      <Heading as="h1">Stories by Chakra Templates</Heading>
+      <Heading as="h1">Forums by Students for Students </Heading>
       <Box
         marginTop={{ base: '1', sm: '5' }}
         display="flex"
@@ -105,10 +98,10 @@ const ArticleList = () => {
           flexDirection="column"
           justifyContent="center"
           marginTop={{ base: '3', sm: '0' }}>
-          <BlogTags tags={['Engineering', 'Product']} />
+          <BlogTags tags={['BT1101']} />
           <Heading marginTop="1">
             <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
-              Blog article title
+              Luminus submission page not working
             </Link>
           </Heading>
           <Text
@@ -116,10 +109,8 @@ const ArticleList = () => {
             marginTop="2"
             color={useColorModeValue('gray.700', 'gray.200')}
             fontSize="lg">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book.
+            I would like to check if the submission page for BT1101 tutorial 4 is working
+            for everyone. Mine is not working. Anyone knows the issue here?
           </Text>
           <BlogAuthor name="John Doe" date={new Date('2021-04-06T19:01:27Z')} />
         </Box>
@@ -148,17 +139,15 @@ const ArticleList = () => {
                 />
               </Link>
             </Box>
-            <BlogTags tags={['Engineering', 'Product']} marginTop="3" />
+            <BlogTags tags={['BT1101']} marginTop="3" />
             <Heading fontSize="xl" marginTop="2">
               <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
-                Some blog title
+              Luminus submission page not working
               </Link>
             </Heading>
             <Text as="p" fontSize="md" marginTop="2">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book.
+            I would like to check if the submission page for BT1101 tutorial 4 is working
+            for everyone. Mine is not working. Anyone knows the issue here?
             </Text>
             <BlogAuthor
               name="John Doe"

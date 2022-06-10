@@ -22,7 +22,6 @@ import {
     ChevronRightIcon,
   } from '@chakra-ui/icons';
 
-  import Forum from "./Forum"
   
 
   export default function WithSubnavigation() {
@@ -86,10 +85,10 @@ import {
               fontSize={'sm'}
               fontWeight={600}
               color={'white'}
-              bg={'pink.400'}
+              bg={'orange.400'}
               href={'/SignUp'}
               _hover={{
-                bg: 'pink.300',
+                bg: 'orange.300',
               }}>
               Sign Up
             </Button>
@@ -158,12 +157,12 @@ import {
         display={'block'}
         p={2}
         rounded={'md'}
-        _hover={{ bg: useColorModeValue('pink.50', 'gray.900') }}>
+        _hover={{ bg: useColorModeValue('orange.50', 'gray.900') }}>
         <Stack direction={'row'} align={'center'}>
           <Box>
             <Text
               transition={'all .3s ease'}
-              _groupHover={{ color: 'pink.400' }}
+              _groupHover={{ color: 'orange.400' }}
               fontWeight={500}>
               {label}
             </Text>
@@ -177,7 +176,7 @@ import {
             justify={'flex-end'}
             align={'center'}
             flex={1}>
-            <Icon color={'pink.400'} w={5} h={5} as={ChevronRightIcon} />
+            <Icon color={'orange.400'} w={5} h={5} as={ChevronRightIcon} />
           </Flex>
         </Stack>
       </Link>
@@ -247,12 +246,7 @@ import {
     );
   };
   
-  interface NavItem {
-    label: string;
-    subLabel?: string;
-    children?: Array<NavItem>;
-    href?: string;
-  }
+  
   
   const NAV_ITEMS = [
     {

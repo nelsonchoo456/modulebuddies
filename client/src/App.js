@@ -4,11 +4,10 @@ import "./App.css";
 import NavigationBar from "./components/layout/NavigationBar"
 import Forum from "./components/layout/Forum"
 import Hero from "./components/layout/Hero"
+import Features from "./components/layout/Features"
+import Testimonials from "./components/layout/Testimonials"
 import Footer from "./components/layout/Footer"
-import Navbar from "./components/layout/Navbar";
-import Landing from "./components/layout/Landing";
-import Register from "./components/auth/Register";
-import Login from "./components/auth/Login";
+
 import Alert from "./components/layout/Alert";
 import SignIn from "./components/auth/SignIn"
 import SignUp from "./components/auth/SignUp"
@@ -18,7 +17,6 @@ import { Provider } from "react-redux";
 import store from "./store";
 import { loadUser } from "./actions/auth";
 import setAuthToken from "./utils/setAuthToken";
-import { Box } from "@chakra-ui/core";
 
 
 
@@ -40,19 +38,12 @@ const App = () => {
 
   return (
 
-    /*<div>
-      <NavigationBar />
-      
-      <Forum />
-      <Footer />
-    </div>*/
-
     <Provider store={store}>
       <Router>
         <div className="App">
           <NavigationBar />
           <Routes>
-            <Route path="/" element={<Hero />} />
+            <Route path="/" element={<><Hero /><Features /><Testimonials /></>} />
             
           </Routes>
           

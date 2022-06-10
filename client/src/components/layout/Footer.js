@@ -2,16 +2,15 @@ import {
     Box,
     chakra,
     Container,
-    Link,
     Stack,
     Text,
     useColorModeValue,
     VisuallyHidden,
   } from '@chakra-ui/react';
   import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
-  import { ReactNode } from 'react';
   
-  const Logo = (props: any) => {
+  
+  const Logo = (props) => {
     return (
       <svg
         height={32}
@@ -34,10 +33,6 @@ import {
     children,
     label,
     href,
-  }: {
-    children: ReactNode;
-    label: string;
-    href: string;
   }) => {
     return (
       <chakra.button
