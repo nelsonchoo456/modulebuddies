@@ -1,7 +1,8 @@
 const express = require("express");
 const { check, validationResult } = require("express-validator");
 const router = express.Router();
-const auth = require("../../middleware/auth");
+// const auth = require("../../middleware/auth");
+const { protect } = require("../../middleware/authMiddleware");
 
 const Profile = require("../../models/Profile");
 const User = require("../../models/User");
@@ -9,7 +10,7 @@ const User = require("../../models/User");
 // @route   GET api/profile/me
 // @desc    Get current users profile
 // @access  Private
-router.get("/me", auth, async (req, res) => {
+router.get("/me", protect, async (req, res) => {
   try {
     const profile = await Profile.findOne({ user: req.user.id }).populate(
       "user",
@@ -35,7 +36,7 @@ router.get("/me", auth, async (req, res) => {
 router.post(
   "/",
   [
-    auth,
+    protect,
     [
       check("major", "Major is required").not().isEmpty(),
       check("bio", "Bio is required").not().isEmpty(),
@@ -119,7 +120,7 @@ router.get("/user/:user_id", async (req, res) => {
 // @route   DELETE api/profile
 // @desc    Delete profile, user & posts
 // @access  Private
-router.delete("/", auth, async (req, res) => {
+router.delete("/", protect, async (req, res) => {
   try {
     // @todo - remove users posts
 
