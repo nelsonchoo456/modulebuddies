@@ -3,6 +3,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import NavigationBar from "./components/layout/NavigationBar"
 import Forum from "./components/layout/Forum"
+import StudyGroup from "./components/layout/StudyGroup"
+import GroupsList from "./components/layout/GroupsList"
+import Modules from "./components/layout/Modules"
 import Hero from "./components/layout/Hero"
 import Features from "./components/layout/Features"
 import Testimonials from "./components/layout/Testimonials"
@@ -44,7 +47,6 @@ const App = () => {
           <NavigationBar />
           <Routes>
             <Route path="/" element={<><Hero /><Features /><Testimonials /></>} />
-            
           </Routes>
           
           <section className="container">
@@ -53,6 +55,9 @@ const App = () => {
               <Route path="/SignIn" element={<SignIn />} />
               <Route path="/SignUp" element={<SignUp />} />
               <Route path="/Forum" element={<Forum />} />
+              <Route path="/StudyGroup" element={<StudyGroup />} />
+              <Route path="/Modules" element={<Modules />} />
+              <Route path="/GroupsList" element={<GroupsList />} />
             </Routes>
           </section>
           

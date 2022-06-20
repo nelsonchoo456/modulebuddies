@@ -54,6 +54,8 @@ import {
           </Flex>
           <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
             <Text
+              as={'a'}
+              href='/'
               textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
               fontFamily={'heading'}
               color={useColorModeValue('gray.800', 'white')}>
@@ -267,15 +269,16 @@ import {
     },
     {
       label: 'Study Group',
+      href: '/StudyGroup',
       children: [
         {
-          label: 'Job Board',
-          subLabel: 'Find your dream design job',
-          href: '#',
+          label: 'Join a Study Group',
+          subLabel: 'Find new Module Buddies',
+          href: '/modules',
         },
         {
-          label: 'Freelance Projects',
-          subLabel: 'An exclusive list for contract work',
+          label: 'My Study Groups',
+          subLabel: 'See the groups you are involved in',
           href: '#',
         },
       ],
