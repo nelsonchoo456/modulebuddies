@@ -289,13 +289,13 @@ const NAV_ITEMS = [
     label: "Study Group",
     children: [
       {
-        label: "Job Board",
-        subLabel: "Find your dream design job",
-        href: "#",
+        label: "Join a Study Group",
+        subLabel: "Find new Module Buddies",
+        href: "/modules",
       },
       {
-        label: "Freelance Projects",
-        subLabel: "An exclusive list for contract work",
+        label: "My Study Groups",
+        subLabel: "See the groups you are involved in",
         href: "#",
       },
     ],

@@ -9,6 +9,8 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Profile from "./pages/Profile";
 import EditProfile from "./pages/EditProfile";
+import Modules from "./pages/Modules";
+import GroupsList from "./pages/GroupList";
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/edit-profile" element={<EditProfile />} />
+            <Route path="/modules" element={<Modules />} />
+            <Route path="/group-list" element={<GroupsList />} />
           </Routes>
         </div>
         <div className="footer">
