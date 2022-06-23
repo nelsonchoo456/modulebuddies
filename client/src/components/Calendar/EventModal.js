@@ -1,7 +1,6 @@
 import {Button,
     FormControl,
     FormLabel,
-    useDisclosure,
     Input,
     Modal,
     ModalOverlay,
@@ -11,20 +10,23 @@ import {Button,
     ModalBody,
     ModalCloseButton,
     Flex,
-    HStack
+    HStack,
+    Box,
+    Grid,
+    VStack
     } from '@chakra-ui/react'
 import React, { useContext, useState } from 'react'
-import { AddIcon, TimeIcon , EditIcon, CheckIcon} from '@chakra-ui/icons'
+import {  TimeIcon , EditIcon, CheckIcon, CalendarIcon, DeleteIcon, CloseIcon} from '@chakra-ui/icons'
 import { BsBookmark } from 'react-icons/bs'
 import GlobalContext from './Context/GlobalContext'
+import { FaBluetooth } from 'react-icons/fa'
 
 const labelClasses = ["indigo", "gray", "green", "blue", "red", "purple"]
 
 
 
 export default function EventModal() {
-    const {daySelected, dispatchCallEvent, selectedEvent} = useContext(GlobalContext);
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const {daySelected, setShowEventModal, dispatchCallEvent, selectedEvent} = useContext(GlobalContext);
     const [name, setName] = useState(selectedEvent ? selectedEvent.name : "" )
     const [description, setDescription] = useState(selectedEvent ? selectedEvent.description : "")
     const [selectedLabel, setSelectedLabel] = useState(
@@ -48,121 +50,122 @@ export default function EventModal() {
             dispatchCallEvent({type: "push", payload: calendarEvent });
         }
        
-        onClose();
+        setShowEventModal(false);
 
     }
     
     return (
-        <>
-            
-            
-            <Button 
-                onClick={onOpen}
-                padding={2} 
-                rounded='3xl'
-                display="flex"
-                alignItems={'center'}
-                boxShadow='md'
-                _hover={{boxShadow:'dark-lg'
-                }}>
-                    <AddIcon w={3} h={3} />
-                    <span pl={3} pr={7}>
-                        Create
-                    </span>
+        
+        <Box 
+        height='100vh'
+        width='100%'
+        position='fixed'
+        left='40%'
+        top='30%'
+        justify={'center'}
+        alignItems='center'
+        >
+      <Box bg={'white'} rounded='lg' boxShadow={'2xl'} w='25%'>
+        <Flex bg={'gray.100'} px='4' justify={'space-between'} alignItems='center'>
+          <Box color={'gray.400'}>
+            <CalendarIcon />
+          </Box>
+          <Box>
+            {selectedEvent && (
+              <Box
+                as='Button'
+                onClick={() => {
+                  dispatchCallEvent({
+                    type: "delete",
+                    payload: selectedEvent,
+                  });
+                  setShowEventModal(false);
+                }}
+                color='gray.400'
+              >
+                <DeleteIcon />
+              </Box>
+            )}
+            <Button onClick={() => setShowEventModal(false)}>
+              <Box color={'gray.400'}>
+                <CloseIcon />
+              </Box>
             </Button>
-              
+          </Box>
+        </Flex>
+        <Box padding={3}>
+          <VStack alignItems={'flex-start'} templateColumns='repeat(5, 1fr)' rowGap={1}>
+            <div></div>
+            <Input
+              type="text"
+              name="name"
+              placeholder="Add title"
+              value={name}
+              required
+              paddingTop={3} border='0' color={'gray.600'} size='xl' paddingBottom={2} w='100%' borderBlock={2}
+              onChange={(e) => setName(e.target.value)}
+            />
+            <Flex gap={2}>
+            <Box color='gray.400'>
+              <TimeIcon/>
+            </Box>
+            <p>{daySelected.format("dddd, MMMM DD")}</p>
+            </Flex>
+            <Flex gap={2} >
+            <Box color='gray.400'>
+              <EditIcon />
+            </Box>
+            <Input
+              type="text"
+              name="description"
+              placeholder="Add a description"
+              value={description}
+              required
+              paddingTop={3} border='0' color={'gray.600'} size='xl' paddingBottom={2} w='100%' borderBlock={2}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+            </Flex>
             
-               
-            <Modal
-
-                isOpen={isOpen}
-                onClose={onClose}
-            >
-                <ModalOverlay />
-                <ModalContent>
-                <ModalHeader>Create an event</ModalHeader>
-                <ModalCloseButton />
-                <ModalBody pb={6}>
-                    <FormControl>
-                    <FormLabel>Event name</FormLabel>
-                    <Input 
-                    name='name' 
-                    placeholder='Add a name' 
-                    value={name} 
-                    required
-                    onChange={(e) => setName(e.target.value)}/>
+            <Flex gap={2}>
+            <Box color='gray.400'>
+              <BsBookmark />
+            </Box>
+              {labelClasses.map((lblClass, i) => (
+                <Flex as={Button} 
+                direction={'column'} 
+                size='xs'  
+                bg={lblClass} 
+                w={1} h={6} 
+                rounded='100%' 
+                justifySelf={'center'} 
+                alignItems={'center'} 
+                key={i}
+                onClick={() => setSelectedLabel(lblClass)}>
+                {selectedLabel === lblClass && (
+                    <span>
+                    <CheckIcon color={'white'}/>
+                    </span>
+                ) }
                     
-                    </FormControl>
-
-                    <FormControl>
-                        <HStack>
-                        <TimeIcon />
-                        <p>{daySelected.format("dddd, MMMM DD")}</p>
-                        </HStack>
-                    </FormControl>
-
-                    <FormControl>
-                        <FormLabel>Event description</FormLabel>
-                        <HStack>
-                            <EditIcon />
-                            <Input 
-                                size='sm'
-                                name='Description' 
-                                placeholder='Add a description' 
-                                value={description} 
-                                required
-                                onChange={(e) => setDescription(e.target.value)}/>
-                        </HStack>
-                    </FormControl>
-
-                    <FormControl mt={4}>
-                        <HStack>
-                            <BsBookmark />
-                            <Flex gap={5}>
-                                {labelClasses.map((lblClass, i) => (
-                                    
-                                    <Flex as={Button} 
-                                    direction={'column'} 
-                                    size='xs'  
-                                    bg={lblClass} 
-                                    w={1} h={6} 
-                                    rounded='100%' 
-                                    justifySelf={'center'} 
-                                    alignItems={'center'} 
-                                    key={i}
-                                    onClick={() => setSelectedLabel(lblClass)}>
-                                    {selectedLabel === lblClass && (
-                                        <span>
-                                        <CheckIcon color={'white'}/>
-                                        </span>
-                                    ) }
-                                        
-                                    </Flex>
-                                    
-                                ))}
-                            </Flex>
-                        </HStack>
-                    </FormControl>
-                </ModalBody>
-
-                <ModalFooter>
-                    <div>
-                    {selectedEvent && (
-                    <Button onClick={() => { 
-                        dispatchCallEvent({type: "delete", payload: selectedEvent});
-                        onClose();
-                    }}
-                         colorScheme='red'>Delete</Button>
-                    )}
-                    </div>
-                    <Button type = "submit" onClick={handleSubmit} colorScheme='orange' mr={3}>
-                    Save
-                    </Button>
-                    <Button onClick={onClose}>Cancel</Button>
-                </ModalFooter>
-                </ModalContent>
-            </Modal>
-
-        </>
+                </Flex>
+              ))}
+            </Flex>
+          </VStack>
+        </Box>
+        <footer
+        className="flex justify-end border-t p-3 mt-5">
+          <Button
+            type="submit"
+            onClick={handleSubmit}
+            bg='blue.500'
+            _hover={{bg:'blue.600'}}
+            color='white'
+            className="bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded text-white"
+          >
+            Save
+          </Button>
+        </footer>
+      </Box>
+    </Box>
     )
 }
