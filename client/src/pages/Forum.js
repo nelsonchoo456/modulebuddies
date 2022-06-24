@@ -4,6 +4,7 @@ import Spinner from "../components/Spinner";
 import { useEffect } from "react";
 import { getPosts, reset } from "../features/post/postSlice";
 import PostItem from "../components/PostItem";
+import { Heading } from "@chakra-ui/react";
 
 function Forum() {
   const navigate = useNavigate();
@@ -40,6 +41,9 @@ function Forum() {
 
   return (
     <>
+      <Heading as="h2" marginTop="5" marginBottom="5">
+        Welcome to the forum!
+      </Heading>
       <div className="form-group">
         <button type="submit" className="btn btn-block" onClick={onClick}>
           Create new post
