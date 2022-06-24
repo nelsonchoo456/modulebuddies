@@ -11,8 +11,11 @@ import Profile from "./pages/Profile";
 import EditProfile from "./pages/EditProfile";
 import Modules from "./pages/Modules";
 import GroupsList from "./pages/GroupList";
+import Forum from "./pages/Forum";
+import CreatePost from "./pages/CreatePost";
 import StudyGroup from "./pages/StudyGroup";
 import Calendar from  "./pages/Calendar"
+
 
 function App() {
   return (
@@ -29,6 +32,8 @@ function App() {
             <Route path="/edit-profile" element={<EditProfile />} />
             <Route path="/modules" element={<Modules />} />
             <Route path="/group-list" element={<GroupsList />} />
+            <Route path="/forum" element={<Forum />} />
+            <Route path="/create-post" element={<CreatePost />} />
             <Route path="/studyGroup" element={<StudyGroup />} />
             <Route path="/calendar" element={<Calendar />} />
           </Routes>
