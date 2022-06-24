@@ -4,10 +4,12 @@ import { Provider } from "react-redux";
 import { store } from "./app/store";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import ContextWrapper from "./components/Calendar/Context/ContextWrapper";
 import "./index.css";
 
 // Chakra UI
 import { ChakraProvider } from "@chakra-ui/react";
+
 
 const container = document.getElementById("root");
 const root = createRoot(container);
@@ -16,7 +18,9 @@ root.render(
   <React.StrictMode>
     <ChakraProvider>
       <Provider store={store}>
-        <App />
+        <ContextWrapper>
+          <App />
+        </ContextWrapper>
       </Provider>
     </ChakraProvider>
   </React.StrictMode>

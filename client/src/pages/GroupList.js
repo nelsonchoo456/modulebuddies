@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Heading, Divider, Container } from "@chakra-ui/react";
+import { Heading, Divider, Container } from "@chakra-ui/react";
 
 import Group from "../components/study-group/groupData";
 import GroupInfo from "../components/study-group/GroupInfo";
