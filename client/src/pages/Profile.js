@@ -5,6 +5,7 @@ import CreateProfileForm from "../components/CreateProfileForm";
 import Spinner from "../components/Spinner";
 import { getProfile, reset } from "../features/profile/profileSlice";
 import { Button } from "@chakra-ui/react";
+import UserAvatar from "../components/UserAvatar";
 
 function Profile() {
   const navigate = useNavigate();
@@ -33,10 +34,10 @@ function Profile() {
     <CreateProfileForm />
   ) : (
     <>
-      <div>{user.name}</div>
+      <UserAvatar avatar={profile.user.avatar} />
+      <h1>{user.name}</h1>
       <div>{profile.major}</div>
       <div>{profile.bio}</div>
-      <img src={profile.user.avatar} alt="User Profile" />
       <Button as={"a"} variant={"link"} href="/edit-profile">
         Edit Profile
       </Button>

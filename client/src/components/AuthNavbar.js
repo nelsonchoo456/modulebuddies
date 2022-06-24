@@ -271,7 +271,7 @@ const MobileNavItem = ({ label, children, href }) => {
 const NAV_ITEMS = [
   {
     label: "Forum",
-    href: "/Forum",
+    href: "/forum",
     /*children: [
         {
           label: 'Explore Design Work',
