@@ -90,6 +90,7 @@ h3 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
+  padding-bottom: 80px;
 }
 
 .goal {
@@ -189,6 +190,17 @@ h3 {
   border-color: #000 transparent #555 transparent;
   border-radius: 50%;
   animation: spin 1.2s linear infinite;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.fixFooter {
+  padding-bottom: 80px;
 }
 
 @keyframes spin {

@@ -7,10 +7,18 @@ import {
   Avatar,
   useColorModeValue,
   Image,
+  Button,
 } from "@chakra-ui/react";
 import Moment from "react-moment";
+import { addLike, removeLike } from "../features/post/postSlice";
+import { FaRegThumbsUp, FaRegThumbsDown } from "react-icons/fa";
+import { BiCommentDetail } from "react-icons/bi";
+import { useDispatch } from "react-redux";
 
-function PostItem({ post }) {
+function PostItem({
+  post: { _id, text, name, avatar, user, likes, comments, date, module, title },
+}) {
+  const dispatch = useDispatch();
   return (
     <Center py={6}>
       <Box
@@ -47,16 +55,16 @@ function PostItem({ post }) {
             fontSize={"sm"}
             letterSpacing={1.1}
           >
-            {post.module}
+            {module}
           </Text>
           <Heading
             color={useColorModeValue("gray.700", "white")}
             fontSize={"2xl"}
             fontFamily={"body"}
           >
-            {post.title}
+            {title}
           </Heading>
-          <Text color={"gray.500"}>{post.text}</Text>
+          <Text color={"gray.500"}>{text}</Text>
         </Stack>
         <Stack mt={6} direction={"row"} spacing={4} align={"center"}>
           <Avatar
@@ -64,11 +72,30 @@ function PostItem({ post }) {
             alt={"Author"}
           />
           <Stack direction={"column"} spacing={0} fontSize={"sm"}>
-            <Text fontWeight={600}>{post.name}</Text>
+            <Text fontWeight={600}>{name}</Text>
             <Text color={"gray.500"}>
-              <Moment format="YYYY/MM/DD">{post.date}</Moment> - 6 min read
+              <Moment format="YYYY/MM/DD">{date}</Moment>
             </Text>
           </Stack>
+          <Button
+            variant="ghost"
+            leftIcon={<FaRegThumbsUp />}
+            onClick={(e) => dispatch(addLike(_id))}
+          >
+            <span>{likes.length > 0 && <span>{likes.length}</span>}</span>
+          </Button>
+          <Button
+            variant="ghost"
+            leftIcon={<FaRegThumbsDown />}
+            onClick={(e) => dispatch(removeLike(_id))}
+          ></Button>
+          <Button
+            leftIcon={<BiCommentDetail />}
+            colorScheme="teal"
+            variant="solid"
+          >
+            Comments
+          </Button>
         </Stack>
       </Box>
     </Center>
