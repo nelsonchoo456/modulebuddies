@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout, reset } from "../features/auth/authSlice";
+import { FaMoon, FaSun } from "react-icons/fa";
+import { useColorMode } from "@chakra-ui/react";
 import {
   Box,
   Flex,
@@ -35,6 +37,8 @@ export default function WithSubnavigation() {
     dispatch(reset());
     navigate("/");
   };
+
+  const {colorMode, toggleColorMode} = useColorMode();
 
   const { isOpen, onToggle } = useDisclosure();
 
@@ -86,6 +90,15 @@ export default function WithSubnavigation() {
           direction={"row"}
           spacing={6}
         >
+
+          <IconButton 
+          icon={ colorMode === 'light' ? <FaSun /> : <FaMoon />} 
+          isRound='true' 
+          size="sm" 
+          alignSelf={'flex-end'}
+          onClick={toggleColorMode}
+          />
+
           <Button
             as={"a"}
             fontSize={"sm"}
@@ -307,6 +320,6 @@ const NAV_ITEMS = [
   },
   {
     label: "To-Do List",
-    href: "#",
+    href: "to-doList",
   },
 ];

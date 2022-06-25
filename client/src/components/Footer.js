@@ -6,8 +6,10 @@ import {
   Text,
   useColorModeValue,
   VisuallyHidden,
+  Image
 } from "@chakra-ui/react";
 import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
+import logo from "../components/ModuleBuddiesLogo.png"
 
 const Logo = (props) => {
   return (
@@ -58,6 +60,10 @@ export default function SmallWithLogoLeft() {
     <Box
       bg={useColorModeValue("gray.50", "gray.900")}
       color={useColorModeValue("gray.700", "gray.200")}
+      position="fixed"
+      left={0}
+      right={0}
+      bottom={0}
     >
       <Container
         as={Stack}
@@ -68,8 +74,9 @@ export default function SmallWithLogoLeft() {
         justify={{ base: "center", md: "space-between" }}
         align={{ base: "center", md: "center" }}
       >
-        <Logo />
-        <Text>© 2022 Chakra Templates. All rights reserved</Text>
+        
+        <Image src= {logo} alt="Logo" objectFit={'fit'} h='50' />
+        <Text>© 2022 ModuleBuddies. All rights reserved</Text>
         <Stack direction={"row"} spacing={6}>
           <SocialButton label={"Twitter"} href={"#"}>
             <FaTwitter />
