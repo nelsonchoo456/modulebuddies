@@ -1,7 +1,7 @@
 import { Button, HStack, Input, useToast } from '@chakra-ui/react';
 import React, {useState} from 'react'
 import { nanoid } from 'nanoid';
-import { toast } from 'react-toastify';
+
 
 function AddTask({addTask}) {
     

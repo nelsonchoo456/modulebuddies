@@ -2,9 +2,9 @@ import React, {useState, useEffect} from "react";
 import {Heading} from '@chakra-ui/react'
 import TaskList from "../components/To-Do List/TaskList";
 import AddTask from "../components/To-Do List/AddTask";
-import { FaSun, FaMoon } from "react-icons/fa";
 
-import {VStack, IconButton} from '@chakra-ui/react'
+
+import {VStack} from '@chakra-ui/react'
 
 function ToDoList() {
     
