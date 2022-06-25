@@ -28,9 +28,47 @@ const getPosts = async (token) => {
   return response.data;
 };
 
+// Add like
+const addLike = async (id, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const response = await axios.put(API_URL + "/like/" + id, id, config);
+
+  const newResponse = {
+    id,
+    likes: response.data,
+  };
+
+  return newResponse;
+};
+
+// Remove like
+const removeLike = async (id, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const response = await axios.put(API_URL + "/unlike/" + id, id, config);
+
+  const newResponse = {
+    id,
+    likes: response.data,
+  };
+
+  return newResponse;
+};
+
 const postService = {
   createPost,
   getPosts,
+  addLike,
+  removeLike,
 };
 
 export default postService;

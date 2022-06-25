@@ -51,6 +51,17 @@ function UserAvatar(props) {
           position="absolute"
           top={0}
           right={0}
+          _after={{
+            content: '""',
+            w: 4,
+            h: 4,
+            bg: "green.300",
+            border: "2px solid white",
+            rounded: "full",
+            pos: "absolute",
+            bottom: 0,
+            right: 3,
+          }}
         />
       </Box>
     </Flex>

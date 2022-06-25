@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import Spinner from "../components/Spinner";
 import { useEffect } from "react";
 import { getPosts, reset } from "../features/post/postSlice";
 import PostItem from "../components/PostItem";
@@ -34,10 +33,6 @@ function Forum() {
   const onClick = () => {
     navigate("/create-post");
   };
-
-  if (isLoading) {
-    return <Spinner />;
-  }
 
   return (
     <>
