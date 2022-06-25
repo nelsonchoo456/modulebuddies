@@ -8,7 +8,7 @@ import ContextWrapper from "./components/Calendar/Context/ContextWrapper";
 import "./index.css";
 
 // Chakra UI
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
 
 
 const container = document.getElementById("root");
@@ -19,6 +19,7 @@ root.render(
     <ChakraProvider>
       <Provider store={store}>
         <ContextWrapper>
+          <ColorModeScript initialColorMode="light" />
           <App />
         </ContextWrapper>
       </Provider>

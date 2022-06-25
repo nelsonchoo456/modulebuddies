@@ -1,25 +1,14 @@
 import {Button,
-    FormControl,
-    FormLabel,
     Input,
-    Modal,
-    ModalOverlay,
-    ModalContent,
-    ModalHeader,
-    ModalFooter,
-    ModalBody,
-    ModalCloseButton,
     Flex,
-    HStack,
     Box,
-    Grid,
     VStack
     } from '@chakra-ui/react'
 import React, { useContext, useState } from 'react'
 import {  TimeIcon , EditIcon, CheckIcon, CalendarIcon, DeleteIcon, CloseIcon} from '@chakra-ui/icons'
 import { BsBookmark } from 'react-icons/bs'
 import GlobalContext from './Context/GlobalContext'
-import { FaBluetooth } from 'react-icons/fa'
+
 
 const labelClasses = ["indigo", "gray", "green", "blue", "red", "purple"]
 
@@ -73,7 +62,7 @@ export default function EventModal() {
           <Box>
             {selectedEvent && (
               <Box
-                as='Button'
+                as='button'
                 onClick={() => {
                   dispatchCallEvent({
                     type: "delete",

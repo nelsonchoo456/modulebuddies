@@ -15,6 +15,7 @@ import Forum from "./pages/Forum";
 import CreatePost from "./pages/CreatePost";
 import StudyGroup from "./pages/StudyGroup";
 import Calendar from  "./pages/Calendar"
+import ToDoList from "./pages/ToDoList";
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
             <Route path="/create-post" element={<CreatePost />} />
             <Route path="/studyGroup" element={<StudyGroup />} />
             <Route path="/calendar" element={<Calendar />} />
+            <Route path="/to-doList" element={<ToDoList />} />
           </Routes>
         </div>
         <div className="footer">
