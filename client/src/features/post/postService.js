@@ -64,11 +64,29 @@ const removeLike = async (id, token) => {
   return newResponse;
 };
 
+// Remove like
+const deletePost = async (id, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const response = await axios.delete(API_URL + "/" + id, config);
+
+  const newResponse = {
+    id,
+  };
+
+  return newResponse;
+};
+
 const postService = {
   createPost,
   getPosts,
   addLike,
   removeLike,
+  deletePost,
 };
 
 export default postService;

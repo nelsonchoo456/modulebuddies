@@ -10,15 +10,18 @@ import {
   Button,
 } from "@chakra-ui/react";
 import Moment from "react-moment";
-import { addLike, removeLike } from "../features/post/postSlice";
+import { addLike, removeLike, deletePost } from "../features/post/postSlice";
 import { FaRegThumbsUp, FaRegThumbsDown } from "react-icons/fa";
 import { BiCommentDetail } from "react-icons/bi";
-import { useDispatch } from "react-redux";
+import { AiTwotoneDelete } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
 
 function PostItem({
   post: { _id, text, name, avatar, user, likes, comments, date, module, title },
 }) {
   const dispatch = useDispatch();
+
+  const auth = useSelector((state) => state.auth);
   return (
     <Center py={6}>
       <Box
@@ -97,6 +100,15 @@ function PostItem({
             Comments
           </Button>
         </Stack>
+        {auth.user._id === user ? (
+          <Button
+            variant="ghost"
+            leftIcon={<AiTwotoneDelete />}
+            onClick={(e) => dispatch(deletePost(_id))}
+          ></Button>
+        ) : (
+          <></>
+        )}
       </Box>
     </Center>
   );
