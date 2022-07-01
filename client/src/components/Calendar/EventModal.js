@@ -19,9 +19,9 @@ import React, { useContext, useState } from 'react'
 import {  TimeIcon , EditIcon, CheckIcon, CalendarIcon, DeleteIcon, CloseIcon} from '@chakra-ui/icons'
 import { BsBookmark } from 'react-icons/bs'
 import GlobalContext from './Context/GlobalContext'
-import { FaBluetooth } from 'react-icons/fa'
 
-const labelClasses = ["indigo", "gray", "green", "blue", "red", "purple"]
+
+const labelClasses = ["teal","gray", "green", "blue", "red", "purple"]
 
 
 
