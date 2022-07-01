@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React from "react";
+=======
+import React, {useState} from 'react';
+>>>>>>> Calendar
 import {
   Box,
   Heading,
@@ -12,11 +16,23 @@ import {
   Badge,
   Button,
   Stack,
+<<<<<<< HEAD
   Flex,
 } from "@chakra-ui/react";
+=======
+  Flex
+} from '@chakra-ui/react';
+
+
+import GroupInfo from '../components/study-group/GroupInfo';
+import Group from "../components/study-group/groupData";
+
+
+>>>>>>> Calendar
 
 import { StarIcon } from "@chakra-ui/icons";
 
+<<<<<<< HEAD
 const property = {
   imageUrl: "https://bit.ly/2Z4KKcF",
   imageAlt: "Rear view of modern home with pool",
@@ -27,8 +43,15 @@ const property = {
   reviewCount: 34,
   rating: 4,
 };
+=======
+
+  
+  
+
+>>>>>>> Calendar
 
 const ArticleList = () => {
+  const [GroupItem, setGroupItem] = useState(Group);
   return (
     <Container maxW={"7xl"} p="12">
       <Stack
@@ -131,6 +154,7 @@ const ArticleList = () => {
         Latest Groups
       </Heading>
       <Divider marginTop="5" />
+<<<<<<< HEAD
       <Wrap spacing="30px" marginTop="5">
         <WrapItem width={{ base: "100%", sm: "45%", md: "45%", lg: "30%" }}>
           <Box w="100%">
@@ -220,6 +244,10 @@ const ArticleList = () => {
           </Box>
         </WrapItem>
       </Wrap>
+=======
+      <GroupInfo GroupItem={GroupItem} />
+      
+>>>>>>> Calendar
     </Container>
   );
 };

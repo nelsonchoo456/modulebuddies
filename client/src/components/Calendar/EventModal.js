@@ -10,7 +10,7 @@ import { BsBookmark } from 'react-icons/bs'
 import GlobalContext from './Context/GlobalContext'
 
 
-const labelClasses = ["indigo", "gray", "green", "blue", "red", "purple"]
+const labelClasses = ["teal","gray", "green", "blue", "red", "purple"]
 
 
 
