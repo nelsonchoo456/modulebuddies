@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Spinner from "../components/Spinner";
 import { createPost, reset } from "../features/post/postSlice";
+import { Box } from "@chakra-ui/react";
 
 function CreatePost() {
   const [formData, setFormData] = useState({
@@ -57,51 +58,56 @@ function CreatePost() {
 
   return (
     <>
-      <section className="heading">
-        <h1>Create your post</h1>
-      </section>
-      <section className="form">
-        <form onSubmit={onSubmit}>
-          <div className="form-group">
-            <input
-              type="text"
-              className="form-control"
-              id="module"
-              name="module"
-              value={module}
-              placeholder="Enter the module in uppercase"
-              onChange={onChange}
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="text"
-              className="form-control"
-              id="title"
-              name="title"
-              value={title}
-              placeholder="Enter the title of your post"
-              onChange={onChange}
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="text"
-              className="form-control"
-              id="text"
-              name="text"
-              value={text}
-              placeholder="Enter your text"
-              onChange={onChange}
-            />
-          </div>
-          <div className="form-group">
-            <button type="submit" className="btn btn-block">
-              Submit
-            </button>
-          </div>
-        </form>
-      </section>
+      <Box paddingTop={"30px"}>
+        <section className="heading">
+          <h1>Create your post</h1>
+        </section>
+        <section className="form">
+          <form onSubmit={onSubmit}>
+            <div className="form-group">
+              <input
+                type="text"
+                className="form-control"
+                id="module"
+                name="module"
+                value={module}
+                placeholder="Enter your module"
+                onChange={onChange}
+                required="true"
+              />
+            </div>
+            <div className="form-group">
+              <input
+                type="text"
+                className="form-control"
+                id="title"
+                name="title"
+                value={title}
+                placeholder="Enter the title of your post"
+                onChange={onChange}
+                required="true"
+              />
+            </div>
+            <div className="form-group">
+              <input
+                type="text"
+                className="form-control"
+                id="text"
+                name="text"
+                value={text}
+                placeholder="Enter your text"
+                onChange={onChange}
+                required="true"
+              />
+            </div>
+            <div className="form-group">
+              <button type="submit" className="btn btn-block">
+                Submit
+              </button>
+            </div>
+          </form>
+        </section>
+      </Box>
     </>
   );
 }

@@ -71,33 +71,6 @@ function Profile() {
             {profile.bio}
           </Text>
 
-          <Stack align={"center"} justify={"center"} direction={"row"} mt={6}>
-            <Badge
-              px={2}
-              py={1}
-              // bg={useColorModeValue('gray.50', 'gray.800')}
-              fontWeight={"400"}
-            >
-              #art
-            </Badge>
-            <Badge
-              px={2}
-              py={1}
-              // bg={useColorModeValue('gray.50', 'gray.800')}
-              fontWeight={"400"}
-            >
-              #photography
-            </Badge>
-            <Badge
-              px={2}
-              py={1}
-              // bg={useColorModeValue('gray.50', 'gray.800')}
-              fontWeight={"400"}
-            >
-              #music
-            </Badge>
-          </Stack>
-
           <Stack mt={8} direction={"row"} spacing={4}>
             <Button
               as={"a"}

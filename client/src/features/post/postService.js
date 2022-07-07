@@ -28,6 +28,19 @@ const getPosts = async (token) => {
   return response.data;
 };
 
+// Get post
+const getPost = async (id, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const response = await axios.get(API_URL + "/" + id, config);
+
+  return response.data;
+};
+
 // Add like
 const addLike = async (id, token) => {
   const config = {
@@ -64,7 +77,7 @@ const removeLike = async (id, token) => {
   return newResponse;
 };
 
-// Remove like
+// Delete post
 const deletePost = async (id, token) => {
   const config = {
     headers: {
@@ -81,12 +94,54 @@ const deletePost = async (id, token) => {
   return newResponse;
 };
 
+// Add comment
+const addComment = async (postData, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const response = await axios.post(
+    API_URL + "/comment/" + postData.postID,
+    postData.textObj,
+    config
+  );
+
+  return response.data;
+};
+
+// Remove comment
+const removeComment = async (postData, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const response = await axios.delete(
+    API_URL + `/comment/${postData.postID}/${postData._id}`,
+    config
+  );
+
+  const commentID = postData.commentID;
+
+  const newResponse = {
+    commentID,
+  };
+
+  return newResponse;
+};
+
 const postService = {
   createPost,
   getPosts,
+  getPost,
   addLike,
   removeLike,
   deletePost,
+  addComment,
+  removeComment,
 };
 
 export default postService;
