@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout, reset } from "../features/auth/authSlice";
 import { FaMoon, FaSun } from "react-icons/fa";
-import { useColorMode } from "@chakra-ui/react";
+import { useColorMode, Image } from "@chakra-ui/react";
 import {
   Box,
   Flex,
@@ -27,6 +27,8 @@ import {
   ChevronRightIcon,
 } from "@chakra-ui/icons";
 
+import Logo from "../components/ModuleBuddiesLogo.png";
+
 export default function WithSubnavigation() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -38,7 +40,7 @@ export default function WithSubnavigation() {
     navigate("/");
   };
 
-  const {colorMode, toggleColorMode} = useColorMode();
+  const { colorMode, toggleColorMode } = useColorMode();
 
   const { isOpen, onToggle } = useDisclosure();
 
@@ -70,13 +72,17 @@ export default function WithSubnavigation() {
           />
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
-          <Link
+          {/* <Link
             textAlign={useBreakpointValue({ base: "center", md: "left" })}
             fontFamily={"heading"}
             color={useColorModeValue("gray.800", "white")}
             href="/dashboard"
           >
             ModuleBuddies
+          </Link> */}
+
+          <Link href="/dashboard">
+            <Image src={Logo} alt="logo" objectFit={"fit"} h="6" />
           </Link>
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
@@ -90,13 +96,12 @@ export default function WithSubnavigation() {
           direction={"row"}
           spacing={6}
         >
-
-          <IconButton 
-          icon={ colorMode === 'light' ? <FaSun /> : <FaMoon />} 
-          isRound='true' 
-          size="sm" 
-          alignSelf={'flex-end'}
-          onClick={toggleColorMode}
+          <IconButton
+            icon={colorMode === "light" ? <FaSun /> : <FaMoon />}
+            isRound="true"
+            size="sm"
+            alignSelf={"flex-end"}
+            onClick={toggleColorMode}
           />
 
           <Button
@@ -285,34 +290,10 @@ const NAV_ITEMS = [
   {
     label: "Forum",
     href: "/forum",
-    /*children: [
-        {
-          label: 'Explore Design Work',
-          subLabel: 'Trending Design to inspire you',
-          href: '#',
-        },
-        {
-          label: 'New & Noteworthy',
-          subLabel: 'Up-and-coming Designers',
-          href: '#',
-        },
-      ],*/
   },
   {
     label: "Study Group",
     href: "/studyGroup",
-    children: [
-      {
-        label: "Join a Study Group",
-        subLabel: "Find new Module Buddies",
-        href: "/modules",
-      },
-      {
-        label: "My Study Groups",
-        subLabel: "See the groups you are involved in",
-        href: "#",
-      },
-    ],
   },
   {
     label: "Calendar",
