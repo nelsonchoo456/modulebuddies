@@ -1,6 +1,6 @@
-import Hero from "../components/Hero";
-import Features from "../components/Features";
-import Testimonials from "../components/Testimonials";
+import Hero from "../components/Landing/Hero";
+import Features from "../components/Landing/Features";
+import Testimonials from "../components/Landing/Testimonials";
 
 function Landing() {
   return (

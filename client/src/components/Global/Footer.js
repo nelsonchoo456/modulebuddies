@@ -6,12 +6,10 @@ import {
   Text,
   useColorModeValue,
   VisuallyHidden,
-  Image
+  Image,
 } from "@chakra-ui/react";
 import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
-import logo from "../components/ModuleBuddiesLogo.png"
-
-
+import logo from "../../assets/ModuleBuddiesLogo.png";
 
 const SocialButton = ({ children, label, href }) => {
   return (
@@ -56,8 +54,7 @@ export default function SmallWithLogoLeft() {
         justify={{ base: "center", md: "space-between" }}
         align={{ base: "center", md: "center" }}
       >
-        
-        <Image src= {logo} alt="Logo" objectFit={'fit'} h='6' />
+        <Image src={logo} alt="Logo" objectFit={"fit"} h="6" />
         <Text>© 2022 ModuleBuddies. All rights reserved</Text>
         <Stack direction={"row"} spacing={6}>
           <SocialButton label={"Twitter"} href={"#"}>

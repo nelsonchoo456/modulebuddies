@@ -80,7 +80,7 @@ const TestimonialAvatar = ({ src, name, title }) => {
 
 export default function WithSpeechBubbles() {
   return (
-    <Box bg={useColorModeValue("gray.100", "gray.700")} paddingBottom={"50px"}>
+    <Box bg={useColorModeValue("gray.100", "gray.700")} paddingBottom={"30px"}>
       <Container maxW={"7xl"} py={16} as={Stack} spacing={12}>
         <Stack spacing={0} align={"center"}>
           <Heading>What other NUS students say</Heading>

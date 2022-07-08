@@ -5,7 +5,7 @@ import { Avatar } from "@chakra-ui/react";
 import Moment from "react-moment";
 import { useSelector, useDispatch } from "react-redux";
 import { AiTwotoneDelete } from "react-icons/ai";
-import { removeComment } from "../features/post/postSlice";
+import { removeComment } from "../../features/post/postSlice";
 
 export default function CommentItem({
   comment: { user, text, name, avatar, _id, date },
