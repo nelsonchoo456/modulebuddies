@@ -1,23 +1,12 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import CreateProfileForm from "../components/CreateProfileForm";
-import Spinner from "../components/Spinner";
+import CreateProfileForm from "../components/Profile/CreateProfileForm";
+import Spinner from "../components/Global/Spinner";
 import { getProfile, reset } from "../features/profile/profileSlice";
-import UserAvatar from "../components/UserAvatar";
+import UserAvatar from "../components/Profile/UserAvatar";
 
-import {
-  Heading,
-  Avatar,
-  Box,
-  Center,
-  Text,
-  Stack,
-  Button,
-  Link,
-  Badge,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import { Heading, Box, Center, Text, Stack, Button } from "@chakra-ui/react";
 
 function Profile() {
   const navigate = useNavigate();

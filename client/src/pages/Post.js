@@ -2,9 +2,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getPost, reset } from "../features/post/postSlice";
-import PostComment from "../components/PostComment";
-import CommentForm from "../components/CommentForm";
-import CommentItem from "../components/CommentItem";
+import PostComment from "../components/Comment/PostComment";
+import CommentForm from "../components/Comment/CommentForm";
+import CommentItem from "../components/Comment/CommentItem";
 import { Box } from "@chakra-ui/react";
 
 function Post() {

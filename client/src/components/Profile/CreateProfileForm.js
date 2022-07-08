@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { createProfile } from "../features/profile/profileSlice";
+import { useDispatch } from "react-redux";
+import { createProfile } from "../../features/profile/profileSlice";
 
 function CreateProfileForm() {
   const [formData, setFormData] = useState({

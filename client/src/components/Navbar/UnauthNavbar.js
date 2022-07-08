@@ -13,7 +13,6 @@ import {
   PopoverTrigger,
   PopoverContent,
   useColorModeValue,
-  useBreakpointValue,
   useDisclosure,
 } from "@chakra-ui/react";
 import {
@@ -22,7 +21,7 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from "@chakra-ui/icons";
-import Logo from "../components/ModuleBuddiesLogo.png"
+import Logo from "../../assets/ModuleBuddiesLogo.png";
 
 export default function WithSubnavigation() {
   const { isOpen, onToggle } = useDisclosure();
@@ -65,11 +64,8 @@ export default function WithSubnavigation() {
           </Link> */}
 
           <Link href="/dashboard">
-            <Image src={Logo}
-            alt="logo" 
-            objectFit={'fit'} 
-            h='6'/>
-           </Link>
+            <Image src={Logo} alt="logo" objectFit={"fit"} h="6" />
+          </Link>
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />
