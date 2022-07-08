@@ -57,7 +57,7 @@ export default function SmallWithLogoLeft() {
         align={{ base: "center", md: "center" }}
       >
         
-        <Image src= {logo} alt="Logo" objectFit={'fit'} h='50' />
+        <Image src= {logo} alt="Logo" objectFit={'fit'} h='6' />
         <Text>© 2022 ModuleBuddies. All rights reserved</Text>
         <Stack direction={"row"} spacing={6}>
           <SocialButton label={"Twitter"} href={"#"}>

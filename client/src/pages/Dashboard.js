@@ -61,13 +61,14 @@ function Dashboard() {
             </Text>
             <br />
             <Text as={"span"} color={"red.400"}>
-              use everywhere!
+              Connect with your buddies today!
             </Text>
           </Heading>
           <Text color={"gray.500"}>
-            Snippy is a rich coding snippets app that lets you create your own
-            code snippets, categorize them, and even sync them in the cloud so
-            you can use them anywhere. All that is free!
+            ModuleBuddies is a platform for you to connect with other NUS
+            students through forums and study groups. You can also manage your
+            time better with our exclusive personal event calendar and to-do
+            list!
           </Text>
           <Stack
             spacing={{ base: 4, sm: 6 }}
@@ -113,7 +114,16 @@ function Dashboard() {
             zIndex={-1}
             color={useColorModeValue("red.50", "red.400")}
           />
-          <Box
+          <iframe
+            width="350"
+            height="250"
+            src="https://www.youtube.com/embed/hu-ropHORto"
+            title="ModuleBuddies - Milestone 2"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen;"
+          ></iframe>
+
+          {/* <Box
             position={"relative"}
             height={"300px"}
             rounded={"2xl"}
@@ -143,7 +153,7 @@ function Dashboard() {
                 "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80"
               }
             />
-          </Box>
+          </Box> */}
         </Flex>
       </Stack>
     </Container>

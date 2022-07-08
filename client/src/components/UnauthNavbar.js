@@ -7,6 +7,7 @@ import {
   Stack,
   Collapse,
   Icon,
+  Image,
   Link,
   Popover,
   PopoverTrigger,
@@ -21,6 +22,7 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from "@chakra-ui/icons";
+import Logo from "../components/ModuleBuddiesLogo.png"
 
 export default function WithSubnavigation() {
   const { isOpen, onToggle } = useDisclosure();
@@ -53,14 +55,21 @@ export default function WithSubnavigation() {
           />
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
-          <Link
+          {/* <Link
             textAlign={useBreakpointValue({ base: "center", md: "left" })}
             fontFamily={"heading"}
             color={useColorModeValue("gray.800", "white")}
             href="/"
           >
             ModuleBuddies
-          </Link>
+          </Link> */}
+
+          <Link href="/dashboard">
+            <Image src={Logo}
+            alt="logo" 
+            objectFit={'fit'} 
+            h='6'/>
+           </Link>
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />
