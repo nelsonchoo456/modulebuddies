@@ -14,9 +14,9 @@ import GroupsList from "./pages/GroupList";
 import Forum from "./pages/Forum";
 import CreatePost from "./pages/CreatePost";
 import StudyGroup from "./pages/StudyGroup";
-import Calendar from  "./pages/Calendar"
+import Calendar from "./pages/Calendar";
 import ToDoList from "./pages/ToDoList";
-
+import Post from "./pages/Post";
 
 function App() {
   return (
@@ -38,6 +38,7 @@ function App() {
             <Route path="/studyGroup" element={<StudyGroup />} />
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/to-doList" element={<ToDoList />} />
+            <Route path="/posts/:id" element={<Post />} />
           </Routes>
         </div>
         <div className="footer">
