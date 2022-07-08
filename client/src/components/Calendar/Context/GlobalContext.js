@@ -12,7 +12,11 @@ const GlobalContext = React.createContext({
     selectedEvent: null,
     setSelectedEvent: () => {},
     showEventModal: false,
-    setShowEventModal: () => {}
+    setShowEventModal: () => {},
+    setLabels: () => {},
+    labels: [],
+    updateLabel: () => {},
+    filteredEvents: [],
 });
 
 export default GlobalContext;

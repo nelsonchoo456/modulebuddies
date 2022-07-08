@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Heading,
@@ -15,20 +15,11 @@ import {
   Flex,
 } from "@chakra-ui/react";
 
-import { StarIcon } from "@chakra-ui/icons";
-
-const property = {
-  imageUrl: "https://bit.ly/2Z4KKcF",
-  imageAlt: "Rear view of modern home with pool",
-  beds: 3,
-  baths: 2,
-  title: "Modern home in city center in the heart of historic Los Angeles",
-  formattedPrice: "$1,900.00",
-  reviewCount: 34,
-  rating: 4,
-};
+import GroupInfo from "../components/study-group/GroupInfo";
+import Group from "../components/study-group/groupData";
 
 const ArticleList = () => {
+  const [GroupItem, setGroupItem] = useState(Group);
   return (
     <Container maxW={"7xl"} p="12">
       <Stack
@@ -131,95 +122,7 @@ const ArticleList = () => {
         Latest Groups
       </Heading>
       <Divider marginTop="5" />
-      <Wrap spacing="30px" marginTop="5">
-        <WrapItem width={{ base: "100%", sm: "45%", md: "45%", lg: "30%" }}>
-          <Box w="100%">
-            <Box borderRadius="lg" overflow="hidden">
-              <Link textDecoration="none" _hover={{ textDecoration: "none" }}>
-                <Image
-                  transform="scale(1.0)"
-                  src={
-                    "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80"
-                  }
-                  alt="some text"
-                  objectFit="contain"
-                  width="100%"
-                  transition="0.3s ease-in-out"
-                  _hover={{
-                    transform: "scale(1.05)",
-                  }}
-                />
-              </Link>
-            </Box>
-
-            <Heading fontSize="xl" marginTop="2">
-              <Link textDecoration="none" _hover={{ textDecoration: "none" }}>
-                Luminus submission page not working
-              </Link>
-            </Heading>
-            <Text as="p" fontSize="md" marginTop="2">
-              I would like to check if the submission page for BT1101 tutorial 4
-              is working for everyone. Mine is not working. Anyone knows the
-              issue here?
-            </Text>
-          </Box>
-        </WrapItem>
-
-        <WrapItem width={{ base: "100%", sm: "45%", md: "45%", lg: "30%" }}>
-          <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
-            <Image src={property.imageUrl} alt={property.imageAlt} />
-
-            <Box p="6">
-              <Box display="flex" alignItems="baseline">
-                <Badge borderRadius="full" px="2" colorScheme="teal">
-                  New
-                </Badge>
-                <Box
-                  color="gray.500"
-                  fontWeight="semibold"
-                  letterSpacing="wide"
-                  fontSize="xs"
-                  textTransform="uppercase"
-                  ml="2"
-                >
-                  {property.beds} beds &bull; {property.baths} baths
-                </Box>
-              </Box>
-
-              <Box
-                mt="1"
-                fontWeight="semibold"
-                as="h4"
-                lineHeight="tight"
-                noOfLines={1}
-              >
-                {property.title}
-              </Box>
-
-              <Box>
-                {property.formattedPrice}
-                <Box as="span" color="gray.600" fontSize="sm">
-                  / wk
-                </Box>
-              </Box>
-
-              <Box display="flex" mt="2" alignItems="center">
-                {Array(5)
-                  .fill("")
-                  .map((_, i) => (
-                    <StarIcon
-                      key={i}
-                      color={i < property.rating ? "teal.500" : "gray.300"}
-                    />
-                  ))}
-                <Box as="span" ml="2" color="gray.600" fontSize="sm">
-                  {property.reviewCount} reviews
-                </Box>
-              </Box>
-            </Box>
-          </Box>
-        </WrapItem>
-      </Wrap>
+      <GroupInfo GroupItem={GroupItem} />
     </Container>
   );
 };

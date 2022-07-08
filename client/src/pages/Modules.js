@@ -23,7 +23,9 @@ const Modules = () => {
   }
   return (
     <Stack direction="column" spacing="30px">
-      <Heading> Module</Heading>
+      <Heading marginTop="5" marginBottom="5">
+        Module
+      </Heading>
 
       <input
         type="text"
