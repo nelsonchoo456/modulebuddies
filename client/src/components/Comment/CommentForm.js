@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { addComment, reset } from "../features/post/postSlice";
+import { addComment, reset } from "../../features/post/postSlice";
 
 function CommentForm({ postID }) {
   const [text, setText] = useState("");

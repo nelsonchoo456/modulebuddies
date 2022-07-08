@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getPosts, reset } from "../features/post/postSlice";
-import PostItem from "../components/PostItem";
+import PostItem from "../components/Forum/PostItem";
 import { Heading } from "@chakra-ui/react";
 
 function Forum() {

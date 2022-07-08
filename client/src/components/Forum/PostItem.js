@@ -10,22 +10,23 @@ import {
   Button,
 } from "@chakra-ui/react";
 import Moment from "react-moment";
-import { addLike, removeLike, deletePost } from "../features/post/postSlice";
+import { addLike, removeLike, deletePost } from "../../features/post/postSlice";
 import { FaRegThumbsUp, FaRegThumbsDown } from "react-icons/fa";
 import { BiCommentDetail } from "react-icons/bi";
 import { AiTwotoneDelete } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 
-function PostComment({
+function PostItem({
   post: { _id, text, name, avatar, user, likes, comments, date, module, title },
 }) {
   const dispatch = useDispatch();
 
   const auth = useSelector((state) => state.auth);
   return (
-    <Center py={6} pb="30px">
+    <Center py={6}>
       <Box
         maxW={"445px"}
+        height={"470px"}
         w={"full"}
         bg={useColorModeValue("white", "gray.900")}
         boxShadow={"2xl"}
@@ -57,6 +58,7 @@ function PostComment({
             fontWeight={800}
             fontSize={"sm"}
             letterSpacing={1.1}
+            noOfLines={1}
           >
             {module}
           </Text>
@@ -64,10 +66,13 @@ function PostComment({
             color={useColorModeValue("gray.700", "white")}
             fontSize={"2xl"}
             fontFamily={"body"}
+            noOfLines={1}
           >
             {title}
           </Heading>
-          <Text color={"gray.500"}>{text}</Text>
+          <Text color={"gray.500"} noOfLines={1}>
+            {text}
+          </Text>
         </Stack>
         <Stack mt={6} direction={"row"} spacing={4} align={"center"}>
           <Avatar
@@ -92,10 +97,29 @@ function PostComment({
             leftIcon={<FaRegThumbsDown />}
             onClick={(e) => dispatch(removeLike(_id))}
           ></Button>
+          <Button
+            as={"a"}
+            leftIcon={<BiCommentDetail />}
+            colorScheme="teal"
+            variant="solid"
+            href={`/posts/${_id}`}
+            width="160px"
+          >
+            Comments
+          </Button>
         </Stack>
+        {auth.user._id === user ? (
+          <Button
+            variant="ghost"
+            leftIcon={<AiTwotoneDelete />}
+            onClick={(e) => dispatch(deletePost(_id))}
+          ></Button>
+        ) : (
+          <></>
+        )}
       </Box>
     </Center>
   );
 }
 
-export default PostComment;
+export default PostItem;

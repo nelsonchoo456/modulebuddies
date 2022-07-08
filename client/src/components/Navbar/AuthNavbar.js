@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { logout, reset } from "../features/auth/authSlice";
+import { logout, reset } from "../../features/auth/authSlice";
 import { FaMoon, FaSun } from "react-icons/fa";
 import { useColorMode, Image } from "@chakra-ui/react";
 import {
@@ -17,7 +17,6 @@ import {
   PopoverTrigger,
   PopoverContent,
   useColorModeValue,
-  useBreakpointValue,
   useDisclosure,
 } from "@chakra-ui/react";
 import {
@@ -27,7 +26,7 @@ import {
   ChevronRightIcon,
 } from "@chakra-ui/icons";
 
-import Logo from "../components/ModuleBuddiesLogo.png";
+import Logo from "../../assets/ModuleBuddiesLogo.png";
 
 export default function WithSubnavigation() {
   const navigate = useNavigate();
