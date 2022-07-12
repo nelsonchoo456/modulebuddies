@@ -33,7 +33,7 @@ function ToDoList() {
   }
 
   return (
-    <VStack>
+    <VStack h={"100vh"}>
       <Heading
         mb="8"
         fontWeight={"extrabold"}
