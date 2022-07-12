@@ -110,6 +110,7 @@ export default function EventModal() {
             <Input
               type="text"
               name="name"
+              maxLength={35}
               placeholder="Add title"
               value={name}
               required

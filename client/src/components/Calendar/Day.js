@@ -30,11 +30,11 @@ export default function Day({ day, rowIdx }) {
       <Flex
         direction="column"
         alignSelf={"stretch"}
-        alignItems={"stretch"}
         border="1px"
-        flex={1}
+        maxW={"100%"}
         borderColor="gray.300"
-        h="100%"
+        minH={"14vh"}
+        h={"100%"}
       >
         <Flex direction="column" alignItems={"center"}>
           {rowIdx === 0 && <p>{day.format("ddd").toUpperCase()}</p>}
@@ -59,13 +59,14 @@ export default function Day({ day, rowIdx }) {
               color="white"
               alignContent={"center"}
               bg={event.label}
-              p={1}
-              mr={3}
+              p={0.5}
               mb={1}
               rounded="lg"
               alignSelf={"stretch"}
               noOfLines={4}
-              maxW={"100%"}
+              whiteSpace={"pre-line"}
+              overflow={"clip"}
+              textOverflow={"ellipsis"}
             >
               {event.name}
             </Box>

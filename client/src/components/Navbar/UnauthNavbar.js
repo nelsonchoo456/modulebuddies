@@ -63,7 +63,7 @@ export default function WithSubnavigation() {
             ModuleBuddies
           </Link> */}
 
-          <Link href="/dashboard">
+          <Link href="/">
             <Image src={Logo} alt="logo" objectFit={"fit"} h="6" />
           </Link>
 
