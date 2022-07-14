@@ -28,8 +28,8 @@ const GroupItems = ({ Group }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <div classname="group-con" key={Group.id}>
-      <div classname="group-container">
+    <div key={Group.id}>
+      <div>
         <Wrap spacing="30px" marginTop="5">
           <WrapItem width={{ base: "100%", sm: "45%", md: "45%", lg: "30%" }}>
             <Box maxW="sm" borderWidth="1px" borderRadius="lg">
@@ -112,10 +112,12 @@ const GroupItems = ({ Group }) => {
 
 export default function GroupInfo({ GroupItem }) {
   return (
-    <Wrap spacing="30px">
-      {GroupItem.map((Group) => {
-        return <GroupItems key={Group.id} Group={Group} />;
-      })}
-    </Wrap>
+    <Box marginBottom={20}>
+      <Wrap spacing="30px">
+        {GroupItem.map((Group) => {
+          return <GroupItems key={Group.id} Group={Group} />;
+        })}
+      </Wrap>
+    </Box>
   );
 }

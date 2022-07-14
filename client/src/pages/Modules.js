@@ -1,45 +1,45 @@
-import {
-  Button,
-  // ButtonGroup,
-  Wrap,
-  WrapItem,
-  Stack,
-  // Select,
-  Heading,
-} from "@chakra-ui/react";
+import { Stack, Heading, Flex, Box } from "@chakra-ui/react";
 import { useState } from "react";
 import MODULEDATA from "../components/study-group/module_data.json";
+import SearchBar from "../components/study-group/SearchBar";
 import Group from "../components/study-group/groupData";
+import GroupInfo from "../components/study-group/GroupInfo";
 
 const Modules = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+  //const [searchTerm, setSearchTerm] = useState("");
   const [GroupItem, setGroupItem] = useState(Group);
-  //   const [buttons, setButtons] = useState([]);
 
-  function filterGroup(id) {
-    window.location.href = "/group-list";
-    const filteredGroup = Group.filter((Group) => Group.module === id);
+  function filterModule(button) {
+    if (button === "All") {
+      setGroupItem(Group);
+      return;
+    }
+    const filteredGroup = Group.filter((Group) => Group.module === button);
     setGroupItem(filteredGroup);
   }
+
   return (
-    <Stack direction="column" spacing="30px">
+    <Flex direction="column" spacing="30px">
       <Heading marginTop="5" marginBottom="5">
-        Module
+        Join a Group
       </Heading>
 
-      <input
+      <SearchBar data={MODULEDATA} filterModule={filterModule} />
+      <GroupInfo GroupItem={GroupItem} />
+      {/* <input
         type="text"
         placeholder="Search Module"
         onChange={(event) => {
           setSearchTerm(event.target.value);
         }}
-      />
-      <Wrap spacing={5}>
+      /> */}
+
+      {/* <Wrap spacing={5}>
         {MODULEDATA.filter((val) => {
           if (searchTerm === "") {
             return val;
           } else if (
-            val.Module_ID.toLowerCase().includes(searchTerm.toLowerCase())
+            val.moduleCode.toLowerCase().includes(searchTerm.toLowerCase())
           ) {
             return val;
           }
@@ -47,16 +47,14 @@ const Modules = () => {
           return (
             <div>
               {
-                <Wrap spacing={4}>
+                <Wrap spacing={1}>
                   <WrapItem>
                     <Button
-                      size="lg"
-                      h="80px"
-                      w="180px"
+                      size="xs"
                       colorScheme="orange"
-                      onClick={() => filterGroup(val.Module_ID)}
+                      onClick={() => filterGroup(val.moduleCode)}
                     >
-                      {val.Module_ID}
+                      {val.moduleCode}
                     </Button>
                   </WrapItem>
                 </Wrap>
@@ -64,8 +62,8 @@ const Modules = () => {
             </div>
           );
         })}
-      </Wrap>
-    </Stack>
+      </Wrap> */}
+    </Flex>
   );
 };
 export default Modules;
