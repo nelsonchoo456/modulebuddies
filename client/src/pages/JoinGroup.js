@@ -26,43 +26,6 @@ const Modules = () => {
 
       <SearchBar data={MODULEDATA} filterModule={filterModule} />
       <GroupInfo GroupItem={GroupItem} />
-      {/* <input
-        type="text"
-        placeholder="Search Module"
-        onChange={(event) => {
-          setSearchTerm(event.target.value);
-        }}
-      /> */}
-
-      {/* <Wrap spacing={5}>
-        {MODULEDATA.filter((val) => {
-          if (searchTerm === "") {
-            return val;
-          } else if (
-            val.moduleCode.toLowerCase().includes(searchTerm.toLowerCase())
-          ) {
-            return val;
-          }
-        }).map((val, key) => {
-          return (
-            <div>
-              {
-                <Wrap spacing={1}>
-                  <WrapItem>
-                    <Button
-                      size="xs"
-                      colorScheme="orange"
-                      onClick={() => filterGroup(val.moduleCode)}
-                    >
-                      {val.moduleCode}
-                    </Button>
-                  </WrapItem>
-                </Wrap>
-              }
-            </div>
-          );
-        })}
-      </Wrap> */}
     </Flex>
   );
 };

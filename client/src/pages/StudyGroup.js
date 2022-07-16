@@ -73,7 +73,7 @@ const ArticleList = () => {
               colorScheme={"orange"}
               bg={"orange.400"}
               _hover={{ bg: "orange.500" }}
-              href={"/modules"}
+              href={"/joinGroup"}
             >
               Join a Group
             </Button>
@@ -83,9 +83,9 @@ const ArticleList = () => {
               size={"lg"}
               fontWeight={"normal"}
               px={6}
-              href={"/group-list"}
+              href={"#"}
             >
-              My Study Groups
+              Create a Group
             </Button>
           </Stack>
         </Stack>
