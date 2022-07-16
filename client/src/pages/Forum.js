@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getPosts, reset } from "../features/post/postSlice";
 import PostItem from "../components/Forum/PostItem";
-import { Heading } from "@chakra-ui/react";
+import { Heading, Input } from "@chakra-ui/react";
 
 function Forum() {
   const navigate = useNavigate();
@@ -13,6 +13,8 @@ function Forum() {
   const { posts, isLoading, isError, message } = useSelector(
     (state) => state.posts
   );
+
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     if (isError) {
@@ -44,10 +46,30 @@ function Forum() {
           Create new post
         </button>
       </div>
+      <div className="search bar">
+        <Input
+          type="text"
+          placeholder="Search Module"
+          onChange={(event) => {
+            setSearchTerm(event.target.value);
+          }}
+        />
+      </div>
+
       <div className="goals">
-        {posts.map((post) => (
-          <PostItem key={post._id} post={post} />
-        ))}
+        {posts
+          .filter((val) => {
+            if (searchTerm === "") {
+              return val;
+            } else if (
+              val.module?.toLowerCase().includes(searchTerm.toLowerCase())
+            ) {
+              return val;
+            }
+          })
+          .map((post) => (
+            <PostItem key={post._id} post={post} />
+          ))}
       </div>
     </>
   );
