@@ -21,7 +21,6 @@
     "config": "^3.3.7",
     "express": "^4.18.1",
     "express-async-handler": "^1.2.0",
-    "express-fileupload": "^1.4.0",
     "express-validator": "^6.14.1",
     "gravatar": "^1.8.2",
     "jsonwebtoken": "^8.5.1",
