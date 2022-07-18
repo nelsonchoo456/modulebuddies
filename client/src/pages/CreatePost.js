@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Spinner from "../components/Global/Spinner";
 import { createPost, reset } from "../features/post/postSlice";
-import { Box } from "@chakra-ui/react";
+import { Box, Input } from "@chakra-ui/react";
+import axios from "axios";
 
 function CreatePost() {
   const [formData, setFormData] = useState({
@@ -12,6 +13,13 @@ function CreatePost() {
     title: "",
     text: "",
   });
+
+  const [file, setFile] = useState("");
+  const [uploadedFile, setUploadedFile] = useState({});
+
+  const uploadFile = (e) => {
+    setFile(e.target.files[0]);
+  };
 
   const { module, title, text } = formData;
 
@@ -31,7 +39,7 @@ function CreatePost() {
     dispatch(reset());
   }, [user, isError, isSuccess, message, navigate, dispatch]);
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
 
     const postData = {
@@ -43,6 +51,27 @@ function CreatePost() {
     dispatch(createPost(postData));
 
     navigate("/forum");
+
+    const newFormData = new FormData();
+    newFormData.append("file", file);
+
+    try {
+      const res = await axios.post("/upload", newFormData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      const { fileName, filePath } = res.data;
+
+      setUploadedFile({ fileName, filePath });
+    } catch (error) {
+      if (error.response.status === 500) {
+        console.log("error with server");
+      } else {
+        console.log(error.response.data.msg);
+      }
+    }
   };
 
   const onChange = (e) => {
@@ -100,6 +129,16 @@ function CreatePost() {
                 required="true"
               />
             </div>
+            <Box paddingBottom="20px">
+              <Input
+                placeholder="Upload Image"
+                size="md"
+                backgroundColor="#ffffff"
+                type="file"
+                paddingBottom="20px"
+                onChange={uploadFile}
+              />
+            </Box>
             <div className="form-group">
               <button type="submit" className="btn btn-block">
                 Submit
