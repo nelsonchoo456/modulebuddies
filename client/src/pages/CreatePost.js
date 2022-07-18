@@ -54,6 +54,8 @@ function CreatePost() {
 
     const newFormData = new FormData();
     newFormData.append("file", file);
+    newFormData.append("id", user._id);
+    newFormData.append("title", title);
 
     try {
       const res = await axios.post("/upload", newFormData, {

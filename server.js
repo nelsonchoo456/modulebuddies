@@ -28,6 +28,10 @@ app.post("/upload", (req, res) => {
 
   const file = req.files.file;
 
+  const originalFileArray = file.name.split(".");
+  const originalFile = originalFileArray[originalFileArray.length - 1];
+  file.name = req.body.id + "_" + req.body.title + "." + originalFile;
+
   file.mv(`${__dirname}/client/public/uploads/${file.name}`, (err) => {
     if (err) {
       console.error(err);
