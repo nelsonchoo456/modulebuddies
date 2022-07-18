@@ -2,14 +2,10 @@ import React, { useState } from "react";
 import {
   Box,
   Heading,
-  Link,
   Image,
   Text,
   Divider,
-  Wrap,
-  WrapItem,
   Container,
-  Badge,
   Button,
   Stack,
   Flex,
@@ -17,9 +13,11 @@ import {
 
 import GroupInfo from "../components/study-group/GroupInfo";
 import Group from "../components/study-group/groupData";
+import CreateGroup from "../components/study-group/CreateGroup";
 
 const ArticleList = () => {
   const [GroupItem, setGroupItem] = useState(Group);
+
   return (
     <Container maxW={"7xl"} p="12">
       <Stack
@@ -77,16 +75,8 @@ const ArticleList = () => {
             >
               Join a Group
             </Button>
-            <Button
-              as={"a"}
-              rounded={"full"}
-              size={"lg"}
-              fontWeight={"normal"}
-              px={6}
-              href={"#"}
-            >
-              Create a Group
-            </Button>
+
+            <CreateGroup />
           </Stack>
         </Stack>
         <Flex
