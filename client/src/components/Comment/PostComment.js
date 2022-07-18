@@ -20,36 +20,6 @@ function PostComment({
   const dispatch = useDispatch();
 
   const auth = useSelector((state) => state.auth);
-
-  function importAll(r) {
-    let images = {};
-    r.keys().forEach((item, index) => {
-      images[item.replace("./", "")] = r(item);
-    });
-    return images;
-  }
-
-  const images = importAll(
-    require.context("../../../public/uploads", false, /\.(png|jpe?g|svg)$/)
-  );
-
-  var checker = false;
-  var imageSource;
-
-  for (const img in images) {
-    const name = img.split(".")[0];
-
-    if (user + "_" + title === name) {
-      imageSource = "/uploads/" + img;
-      checker = true;
-      break;
-    }
-  }
-
-  if (checker === false) {
-    imageSource =
-      "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80";
-  }
   return (
     <Center py={6} pb="30px">
       <Box
@@ -70,7 +40,9 @@ function PostComment({
           pos={"relative"}
         >
           <Image
-            src={imageSource}
+            src={
+              "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+            }
             objectFit="cover"
             width="500px"
             height="210px"
