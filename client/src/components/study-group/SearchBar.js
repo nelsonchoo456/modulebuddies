@@ -20,14 +20,17 @@ function SearchBar({ data, filterModule }) {
     }
   };
 
-  const clearInput = () => {
+  function clearInput(module) {
     setFilteredModule([]);
+
     setWordEntered("");
-  };
+    filterModule("All");
+  }
 
   function clickedButton(module) {
+    setFilteredModule([]);
+    setWordEntered(module);
     filterModule(module);
-    clearInput();
   }
   const { colorMode, toggleColorMode } = useColorMode();
 
@@ -46,7 +49,7 @@ function SearchBar({ data, filterModule }) {
           marginLeft={1}
           bg={colorMode === "light" ? "white" : "gray.900"}
         >
-          {filteredModule.length === 0 ? (
+          {wordEntered === "" ? (
             <SearchIcon />
           ) : (
             <CloseIcon onClick={clearInput} />
@@ -57,7 +60,7 @@ function SearchBar({ data, filterModule }) {
       {filteredModule !== 0 && (
         <Box
           marginTop={"5px"}
-          w={"920px"}
+          w={"100%"}
           maxH={"200px"}
           bg={"white"}
           boxShadow={"md"}

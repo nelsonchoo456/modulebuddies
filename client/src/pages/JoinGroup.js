@@ -1,4 +1,4 @@
-import { Stack, Heading, Flex, Box } from "@chakra-ui/react";
+import { Heading, Flex } from "@chakra-ui/react";
 import { useState } from "react";
 import MODULEDATA from "../components/study-group/module_data.json";
 import SearchBar from "../components/study-group/SearchBar";
@@ -6,7 +6,6 @@ import Group from "../components/study-group/groupData";
 import GroupInfo from "../components/study-group/GroupInfo";
 
 const Modules = () => {
-  //const [searchTerm, setSearchTerm] = useState("");
   const [GroupItem, setGroupItem] = useState(Group);
 
   function filterModule(button) {
