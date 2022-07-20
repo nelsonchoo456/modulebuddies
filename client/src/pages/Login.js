@@ -23,7 +23,7 @@ function Login() {
 
   useEffect(() => {
     if (isError) {
-      toast.error("Invalid Credentials");
+      toast.error(message);
     }
 
     if (isSuccess || user) {
@@ -75,6 +75,7 @@ function Login() {
               value={email}
               placeholder="Enter your email"
               onChange={onChange}
+              required={true}
             />
           </div>
           <div className="form-group">
@@ -86,6 +87,7 @@ function Login() {
               value={password}
               placeholder="Enter password"
               onChange={onChange}
+              required={true}
             />
           </div>
           <div className="form-group">

@@ -82,6 +82,7 @@ function Register() {
               value={name}
               placeholder="Enter your name"
               onChange={onChange}
+              required={true}
             />
           </div>
           <div className="form-group">
@@ -93,6 +94,7 @@ function Register() {
               value={email}
               placeholder="Enter your email"
               onChange={onChange}
+              required={true}
             />
           </div>
           <div className="form-group">
@@ -104,6 +106,7 @@ function Register() {
               value={password}
               placeholder="Enter password"
               onChange={onChange}
+              required={true}
             />
           </div>
           <div className="form-group">
@@ -115,6 +118,7 @@ function Register() {
               value={password2}
               placeholder="Confirm password"
               onChange={onChange}
+              required={true}
             />
           </div>
           <div className="form-group">

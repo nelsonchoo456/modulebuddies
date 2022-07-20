@@ -46,18 +46,18 @@ function Dashboard() {
             <Text
               as={"span"}
               position={"relative"}
-              _after={{
-                content: "''",
-                width: "full",
-                height: "50%",
-                position: "absolute",
-                bottom: 1,
-                left: 0,
-                bg: "red.400",
-                zIndex: -1,
-              }}
+              // _after={{
+              //   content: "''",
+              //   width: "full",
+              //   height: "50%",
+              //   position: "absolute",
+              //   bottom: 1,
+              //   left: 0,
+              //   bg: "red.400",
+              //   zIndex: -1,
+              // }}
             >
-              Welcome {user.name}
+              Welcome {user.name}!
             </Text>
             <br />
             <Text as={"span"} color={"red.400"}>
@@ -88,11 +88,14 @@ function Dashboard() {
               Get started
             </Button>
             <Button
+              as="a"
               rounded={"full"}
               size={"lg"}
               fontWeight={"normal"}
               px={6}
               leftIcon={<PlayIcon h={4} w={4} color={"gray.300"} />}
+              target="_blank"
+              href="https://www.youtube.com/watch?v=hu-ropHORto"
             >
               How It Works
             </Button>
