@@ -21,7 +21,7 @@ const registerUser = asyncHandler(async (req, res) => {
   const userExists = await User.findOne({ email });
 
   if (userExists) {
-    res.status(400);
+    res.status(400).json({ error: "User already exists" });
     throw new Error("User already exists");
   }
 
@@ -66,6 +66,18 @@ const loginUser = asyncHandler(async (req, res) => {
 
   // Check for user email
   const user = await User.findOne({ email });
+
+  if (!user) {
+    res.status(400).json({ error: "User does not exist" });
+    throw new Error("Invalid credentials");
+  }
+
+  const isMatch = await bcrypt.compare(password, user.password);
+
+  if (!isMatch) {
+    res.status(400).json({ error: "Password is incorrect" });
+    throw new Error("Invalid credentials");
+  }
 
   if (user && (await bcrypt.compare(password, user.password))) {
     res.json({

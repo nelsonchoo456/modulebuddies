@@ -1,6 +1,6 @@
-import React, { useState } from "react";
 import {
   Box,
+  Text,
   Link,
   Wrap,
   WrapItem,
@@ -15,6 +15,19 @@ import {
   ModalCloseButton,
   useDisclosure,
 } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import {
+  joinStudyGroup,
+  getStudyGroups,
+  reset,
+  leaveStudyGroup,
+  deleteStudyGroup,
+} from "../../features/study-group/studyGroupSlice";
+import { ImExit } from "react-icons/im";
+import { AiTwotoneDelete } from "react-icons/ai";
 
 const GroupItems = ({ Group }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -27,12 +40,66 @@ const GroupItems = ({ Group }) => {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { user } = useSelector((state) => state.auth);
+  const { studyGroups, isLoading, isError, message } = useSelector(
+    (state) => state.studyGroups
+  );
+
+  useEffect(() => {
+    if (isError) {
+      console.log(message);
+    }
+
+    if (!user) {
+      navigate("/login");
+    }
+
+    dispatch(getStudyGroups());
+
+    return () => {
+      dispatch(reset);
+    };
+  }, [user, navigate, isError, message, dispatch]);
+
+  const checkMembers = () => {
+    var checker = false;
+
+    for (const member in Group.members) {
+      if (Group.members[member].user === user._id) {
+        checker = true;
+        break;
+      }
+    }
+
+    return checker;
+  };
+
+  const onClick = (e) => {
+    if (checkMembers() === false) {
+      dispatch(joinStudyGroup(Group._id));
+      toast.success("Successfully joined study group");
+    }
+  };
+
+  const onClickLeave = (e) => {
+    dispatch(leaveStudyGroup(Group._id));
+    toast.success("Study group left.");
+  };
+
+  const onClickDelete = (e) => {
+    dispatch(deleteStudyGroup(Group._id));
+    toast.success("Study group deleted.");
+  };
+
   return (
-    <div key={Group.id}>
+    <div key={Group._id}>
       <div>
         <Wrap spacing="30px" marginTop="5">
           <WrapItem width={{ base: "100%", sm: "45%", md: "45%", lg: "30%" }}>
-            <Box maxW="sm" borderWidth="1px" borderRadius="lg">
+            <Box maxW="sm" borderWidth="1px" borderRadius="lg" height="400px">
               <Link>
                 <Button
                   as="a"
@@ -55,7 +122,7 @@ const GroupItems = ({ Group }) => {
                 <ModalContent>
                   <ModalHeader>{Group.name}</ModalHeader>
                   <ModalCloseButton />
-                  <ModalBody>{Group.description}</ModalBody>
+                  <ModalBody>{Group.text}</ModalBody>
 
                   <ModalFooter>
                     <Button colorScheme="orange" mr={3} onClick={onClose}>
@@ -64,11 +131,22 @@ const GroupItems = ({ Group }) => {
                     <Button
                       as="a"
                       variant="ghost"
-                      href={Group.discord_URL}
                       target="_blank"
+                      href={Group.discord}
+                      onClick={onClick}
                     >
-                      Join Group
+                      {checkMembers() ? "View Link" : "Join Group"}
                     </Button>
+                    {checkMembers() ? (
+                      <Button
+                        as="a"
+                        variant="ghost"
+                        onClick={onClickLeave}
+                        leftIcon={<ImExit />}
+                      >
+                        Leave Group
+                      </Button>
+                    ) : null}
                   </ModalFooter>
                 </ModalContent>
               </Modal>
@@ -86,7 +164,8 @@ const GroupItems = ({ Group }) => {
                     textTransform="uppercase"
                     ml="2"
                   >
-                    {Group.memberCount} members
+                    {Group.members.length}{" "}
+                    {Group.members.length === 1 ? "member" : "members"}
                   </Box>
                 </Box>
 
@@ -100,7 +179,14 @@ const GroupItems = ({ Group }) => {
                   {Group.name}
                 </Box>
 
-                <Box>{Group.description}</Box>
+                <Text>{Group.text}</Text>
+                {Group.user === user._id ? (
+                  <Button
+                    variant="ghost"
+                    leftIcon={<AiTwotoneDelete />}
+                    onClick={onClickDelete}
+                  ></Button>
+                ) : null}
               </Box>
             </Box>
           </WrapItem>
@@ -115,7 +201,7 @@ export default function GroupInfo({ GroupItem }) {
     <Box marginBottom={20}>
       <Wrap spacing="30px">
         {GroupItem.map((Group) => {
-          return <GroupItems key={Group.id} Group={Group} />;
+          return <GroupItems key={Group._id} Group={Group} />;
         })}
       </Wrap>
     </Box>

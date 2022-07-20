@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import {
   Box,
   Heading,
@@ -14,9 +13,37 @@ import {
 import GroupInfo from "../components/study-group/GroupInfo";
 import Group from "../components/study-group/groupData";
 import CreateGroup from "../components/study-group/CreateGroup";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { getStudyGroups, reset } from "../features/study-group/studyGroupSlice";
 
 const ArticleList = () => {
   const [GroupItem, setGroupItem] = useState(Group);
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { user } = useSelector((state) => state.auth);
+  const { studyGroups, isLoading, isError, message } = useSelector(
+    (state) => state.studyGroups
+  );
+
+  useEffect(() => {
+    if (isError) {
+      console.log(message);
+    }
+
+    if (!user) {
+      navigate("/login");
+    }
+
+    dispatch(getStudyGroups());
+
+    return () => {
+      dispatch(reset);
+    };
+  }, [user, navigate, isError, message, dispatch]);
 
   return (
     <Container maxW={"7xl"} p="12">
@@ -107,12 +134,11 @@ const ArticleList = () => {
           </Box>
         </Flex>
       </Stack>
-
       <Heading as="h2" marginTop="5">
         Latest Groups
       </Heading>
       <Divider marginTop="5" />
-      <GroupInfo GroupItem={GroupItem} />
+      <GroupInfo GroupItem={studyGroups.slice(0, 4)} />;
     </Container>
   );
 };

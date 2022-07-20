@@ -1,19 +1,48 @@
 import { Heading, Flex } from "@chakra-ui/react";
-import { useState } from "react";
 import MODULEDATA from "../components/study-group/module_data.json";
 import SearchBar from "../components/study-group/SearchBar";
 import Group from "../components/study-group/groupData";
 import GroupInfo from "../components/study-group/GroupInfo";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { getStudyGroups, reset } from "../features/study-group/studyGroupSlice";
 
-const Modules = () => {
-  const [GroupItem, setGroupItem] = useState(Group);
+const JoinGroup = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { user } = useSelector((state) => state.auth);
+  const { studyGroups, isLoading, isError, message } = useSelector(
+    (state) => state.studyGroups
+  );
+
+  const [GroupItem, setGroupItem] = useState(studyGroups);
+
+  useEffect(() => {
+    if (isError) {
+      console.log(message);
+    }
+
+    if (!user) {
+      navigate("/login");
+    }
+
+    dispatch(getStudyGroups());
+
+    return () => {
+      dispatch(reset);
+    };
+  }, [user, navigate, isError, message, dispatch]);
 
   function filterModule(button) {
     if (button === "All") {
-      setGroupItem(Group);
+      setGroupItem(studyGroups);
       return;
     }
-    const filteredGroup = Group.filter((Group) => Group.module === button);
+    const filteredGroup = studyGroups.filter(
+      (Group) => Group.module === button
+    );
     setGroupItem(filteredGroup);
   }
 
@@ -22,10 +51,9 @@ const Modules = () => {
       <Heading marginTop="5" marginBottom="5">
         Join a Group
       </Heading>
-
       <SearchBar data={MODULEDATA} filterModule={filterModule} />
       <GroupInfo GroupItem={GroupItem} />
     </Flex>
   );
 };
-export default Modules;
+export default JoinGroup;
