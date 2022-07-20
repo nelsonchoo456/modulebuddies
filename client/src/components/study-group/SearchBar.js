@@ -20,9 +20,8 @@ function SearchBar({ data, filterModule }) {
     }
   };
 
-  function clearInput(module) {
+  function clearInput() {
     setFilteredModule([]);
-
     setWordEntered("");
     filterModule("All");
   }

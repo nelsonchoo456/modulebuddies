@@ -97,15 +97,19 @@ const GroupItems = ({ Group }) => {
   return (
     <div key={Group._id}>
       <div>
-        <Wrap spacing="30px" marginTop="5">
-          <WrapItem width={{ base: "100%", sm: "45%", md: "45%", lg: "30%" }}>
-            <Box maxW="sm" borderWidth="1px" borderRadius="lg" height="400px">
+        <Wrap spacing="30px" marginTop="10">
+          <WrapItem>
+            <Box
+              borderWidth="1px"
+              borderRadius="lg"
+              height="320px"
+              width={"240px"}
+            >
               <Link>
                 <Button
                   as="a"
-                  size="lg"
-                  h="180px"
-                  w="290px"
+                  h="120px"
+                  w="100%"
                   colorScheme="orange"
                   _hover={{ bg: "gray.200", color: "orange.400" }}
                   _focus={{ boxShadow: "outline" }}
@@ -199,7 +203,7 @@ const GroupItems = ({ Group }) => {
 export default function GroupInfo({ GroupItem }) {
   return (
     <Box marginBottom={20}>
-      <Wrap spacing="30px">
+      <Wrap spacing="30px" justify={"center"}>
         {GroupItem.map((Group) => {
           return <GroupItems key={Group._id} Group={Group} />;
         })}
