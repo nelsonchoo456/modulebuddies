@@ -30,4 +30,4 @@ We envision a better learning environment for NUS students where they do not fee
 - [Express.js](https://expressjs.com/)
 - [MongoDB Atlas](https://www.mongodb.com/atlas/database)
 
-<a target="_blank" href="https://module-buddies.herokuapp.com/"><strong>Check out the website »</strong></a>
+<a href="https://module-buddies.herokuapp.com/" target="_blank"><strong>Check out the website »</strong></a>
