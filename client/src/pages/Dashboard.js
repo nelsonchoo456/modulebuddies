@@ -57,7 +57,8 @@ function Dashboard() {
               //   zIndex: -1,
               // }}
             >
-              Welcome {user.name}!
+              Welcome <br></br>
+              {user.name}!
             </Text>
             <br />
             <Text as={"span"} color={"red.400"}>

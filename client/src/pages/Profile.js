@@ -45,7 +45,9 @@ function Profile() {
           p={6}
           textAlign={"center"}
         >
-          <UserAvatar avatar={profile.user.avatar} />
+          <UserAvatar
+            avatar={profile.avatar ? profile.avatar : profile.user.avatar}
+          />
           <Heading fontSize={"2xl"} fontFamily={"body"}>
             {user.name}
           </Heading>

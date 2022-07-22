@@ -11,6 +11,9 @@ const ProfileSchema = new mongoose.Schema({
   bio: {
     type: String,
   },
+  avatar: {
+    type: String,
+  },
   date: {
     type: Date,
     default: Date.now,
