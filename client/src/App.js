@@ -17,15 +17,17 @@ import StudyGroup from "./pages/StudyGroup";
 import Calendar from "./pages/Calendar";
 import ToDoList from "./pages/ToDoList";
 import Post from "./pages/Post";
+import { useSelector } from "react-redux";
 
 function App() {
+  const { user } = useSelector((state) => state.auth);
   return (
     <>
       <Router>
         <div className="container">
           <Header />
           <Routes>
-            <Route path="/" element={<Landing />} />
+            <Route path="/" element={!user ? <Landing /> : <Dashboard />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/dashboard" element={<Dashboard />} />

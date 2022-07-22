@@ -27,6 +27,7 @@ router.post(
         module: req.body.module,
         title: req.body.title,
         name: user.name,
+        url: req.body.url,
         avatar: user.avatar,
         user: req.user.id,
       });

@@ -138,7 +138,7 @@ const ArticleList = () => {
         Latest Groups
       </Heading>
       <Divider marginTop="5" />
-      <GroupInfo GroupItem={studyGroups.slice(0, 4)} />;
+      <GroupInfo GroupItem={studyGroups.slice(0, 5)} />;
     </Container>
   );
 };
