@@ -13,6 +13,9 @@ function CreatePost() {
     text: "",
   });
 
+  const [image, setImage] = useState("");
+  const [url, setUrl] = useState("");
+
   const { module, title, text } = formData;
 
   const navigate = useNavigate();
@@ -39,6 +42,7 @@ function CreatePost() {
       module,
       title,
       user,
+      url,
     };
     dispatch(createPost(postData));
 
@@ -55,6 +59,25 @@ function CreatePost() {
   if (isLoading) {
     return <Spinner />;
   }
+
+  const postDetails = () => {
+    const data = new FormData();
+    data.append("file", image);
+    data.append("upload_preset", "module-buddies");
+    data.append("cloud_name", "nelsonchoo456");
+    fetch("https://api.cloudinary.com/v1_1/nelsonchoo456/image/upload", {
+      method: "post",
+      body: data,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setUrl(data.url);
+        toast.success("Image Uploaded");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <>
@@ -99,6 +122,25 @@ function CreatePost() {
                 onChange={onChange}
                 required="true"
               />
+            </div>
+            <div className="form-group">
+              <input
+                type="file"
+                className="form-control"
+                id="image"
+                name="image"
+                onChange={(e) => setImage(e.target.files[0])}
+                required="true"
+              />
+            </div>
+            <div className="form-group">
+              <button
+                type="button"
+                className="btn btn-block"
+                onClick={() => postDetails()}
+              >
+                Upload Image
+              </button>
             </div>
             <div className="form-group">
               <button type="submit" className="btn btn-block">
