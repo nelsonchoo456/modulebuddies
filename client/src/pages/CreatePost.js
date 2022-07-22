@@ -130,7 +130,6 @@ function CreatePost() {
                 id="image"
                 name="image"
                 onChange={(e) => setImage(e.target.files[0])}
-                required="true"
               />
             </div>
             <div className="form-group">
