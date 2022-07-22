@@ -28,7 +28,7 @@ router.post(
         title: req.body.title,
         name: user.name,
         url: req.body.url,
-        avatar: user.avatar,
+        avatar: req.body.avatar,
         user: req.user.id,
       });
 

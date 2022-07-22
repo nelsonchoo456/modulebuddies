@@ -22,6 +22,7 @@ function CreatePost() {
   const dispatch = useDispatch();
 
   const { user } = useSelector((state) => state.auth);
+  const profile = useSelector((state) => state.profile);
   const { isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.posts
   );
@@ -37,12 +38,15 @@ function CreatePost() {
   const onSubmit = (e) => {
     e.preventDefault();
 
+    const avatar = profile.profile.avatar;
+
     const postData = {
       text,
       module,
       title,
       user,
       url,
+      avatar,
     };
     dispatch(createPost(postData));
 

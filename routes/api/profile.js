@@ -48,13 +48,14 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { major, bio } = req.body;
+    const { major, bio, avatar } = req.body;
 
     // Build profile object
     const profileFields = {};
     profileFields.user = req.user.id;
     if (major) profileFields.major = major;
     if (bio) profileFields.bio = bio;
+    if (avatar) profileFields.avatar = avatar;
 
     try {
       let profile = await Profile.findOne({ user: req.user.id });

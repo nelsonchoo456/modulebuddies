@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createProfile, getProfile } from "../features/profile/profileSlice";
+import { toast } from "react-toastify";
 
 import {
   Button,
@@ -32,6 +33,28 @@ function EditProfile() {
 
   const { major, bio } = formData;
 
+  const [image, setImage] = useState("");
+  const [url, setUrl] = useState("");
+
+  const postDetails = () => {
+    const data = new FormData();
+    data.append("file", image);
+    data.append("upload_preset", "module-buddies");
+    data.append("cloud_name", "nelsonchoo456");
+    fetch("https://api.cloudinary.com/v1_1/nelsonchoo456/image/upload", {
+      method: "post",
+      body: data,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setUrl(data.url);
+        toast.success("Image Uploaded");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const { profile } = useSelector((state) => state.profile);
 
   useEffect(() => {
@@ -46,9 +69,12 @@ function EditProfile() {
   const onSubmit = (e) => {
     e.preventDefault();
 
+    const avatar = url;
+
     const profileData = {
       major,
       bio,
+      avatar,
     };
 
     dispatch(createProfile(profileData));
@@ -127,7 +153,7 @@ function EditProfile() {
             <FormLabel>User Icon</FormLabel>
             <Stack direction={["column", "row"]} spacing={6}>
               <Center>
-                <Avatar size="xl" src="https://bit.ly/sage-adebayo">
+                <Avatar size="xl" src={url ? url : profile.avatar}>
                   <AvatarBadge
                     as={IconButton}
                     size="sm"
@@ -136,12 +162,31 @@ function EditProfile() {
                     colorScheme="red"
                     aria-label="remove Image"
                     icon={<SmallCloseIcon />}
+                    onClick={() => setUrl("")}
                   />
                 </Avatar>
               </Center>
               <Center w="full">
-                <Button w="full">Change Icon</Button>
+                {/* <Button w="full">Change Icon</Button> */}
+                <Input
+                  type="file"
+                  onChange={(e) => setImage(e.target.files[0])}
+                ></Input>
               </Center>
+            </Stack>
+            <Stack paddingLeft={"150px"}>
+              <Button
+                as={"button"}
+                bg={"blue.400"}
+                color={"white"}
+                w="200px"
+                _hover={{
+                  bg: "blue.500",
+                }}
+                onClick={() => postDetails()}
+              >
+                Upload Image
+              </Button>
             </Stack>
           </FormControl>
           <FormControl id="major" isRequired>
