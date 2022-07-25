@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addComment, reset } from "../../features/post/postSlice";
+import { getProfile } from "../../features/profile/profileSlice";
 
 function CommentForm({ postID }) {
   const [text, setText] = useState("");
@@ -14,13 +15,20 @@ function CommentForm({ postID }) {
   const { isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.posts
   );
+  const profile = useSelector((state) => state.profile);
+
+  useEffect(() => {
+    dispatch(getProfile());
+  }, []);
+
+  const avatar = profile.profile.avatar;
 
   const onSubmit = (e) => {
     e.preventDefault();
 
-    const textObj = { text };
+    console.log(profile);
 
-    dispatch(addComment({ postID, textObj }));
+    dispatch(addComment({ postID, text, avatar }));
     setText("");
   };
   return (

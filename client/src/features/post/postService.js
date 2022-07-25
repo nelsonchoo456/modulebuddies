@@ -104,7 +104,7 @@ const addComment = async (postData, token) => {
 
   const response = await axios.post(
     API_URL + "/comment/" + postData.postID,
-    postData.textObj,
+    postData,
     config
   );
 
