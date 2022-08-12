@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { getPosts, reset } from "../features/post/postSlice";
 import PostItem from "../components/Forum/PostItem";
 import { Heading, Input } from "@chakra-ui/react";
+import { getProfile } from "../features/profile/profileSlice";
 
 function Forum() {
   const navigate = useNavigate();
@@ -26,6 +27,8 @@ function Forum() {
     }
 
     dispatch(getPosts());
+
+    dispatch(getProfile());
 
     return () => {
       dispatch(reset);
